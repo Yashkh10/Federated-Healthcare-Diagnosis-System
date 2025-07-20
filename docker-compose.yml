@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  fl-server:
+    build:
+      context: ./fl-server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - fabric-api
+    networks:
+      - flnet
+
+  fl-client-1:
+    build:
+      context: ./fl-client-1
+    depends_on:
+      - fl-server
+    volumes:
+      - ./fl-client-1/data:/app/data
+    networks:
+      - flnet
+
+  fl-client-2:
+    build:
+      context: ./fl-client-2
+    depends_on:
+      - fl-server
+    volumes:
+      - ./fl-client-2/data:/app/data
+    networks:
+      - flnet
+
+  fabric-api:
+    build:
+      context: ./fabric-api
+    ports:
+      - "3000:3000"
+    networks:
+      - flnet
+
+  ganache:
+    image: trufflesuite/ganache
+    ports:
+      - "8545:8545"
+    networks:
+      - flnet
+
+networks:
+  flnet:
