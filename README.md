@@ -88,7 +88,7 @@ class CNN(nn.Module):
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/sumity2021/federated-healthcare.git
+git clone https://github.com/Yashkh10/Federated-Healthcare-Diagnosis-System.git
 cd federated-healthcare
 ```
 
